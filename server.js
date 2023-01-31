@@ -9,7 +9,12 @@ const hbs = exphbs.create({}); // for handlebars but still don't get this, know 
 const sequelize = require('./config/connection'); // importing the database connections
 const { appendFile } = require('fs');
 
-
+const app = express();
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+const PORT = process.env.PORT || 3001;
+// process.env.port is a setting in Heroku. We don't know what pot is going to use Heroku, so we need to grab from the enviroment variables 
+// in Heroku
 
 const sessionSettings = {
     secret: 'secret here',
@@ -27,6 +32,8 @@ sequelize.sync({force:true}).then(() => {
         console.log(`App started in Port ${PORT}`);
     })
 }); 
+
+
 // sequelize sync will open the conenction to our database, and also will recreate the tables if force is set to true
 //if force is set to true, sequelize will do a DROP tabel and CREATE table each time we run the application
 // once the tabels have been created and populated (with seeds), change the force to false, so your data isn't lost

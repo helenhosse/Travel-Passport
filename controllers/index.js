@@ -1,6 +1,7 @@
 const router = require ('express').Router();
 
 const categoriesRoutes = require('./categoriesRoutes');
+const userApiRoutes = require('./api/userRoutes')
 
 // need to put the API route here as well - no idea how to do
 
