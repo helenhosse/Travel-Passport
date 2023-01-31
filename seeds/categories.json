@@ -1,0 +1,20 @@
+[
+    {
+        "name": "flights"
+    },
+    {
+        "name": "hotels"
+    },
+    {
+        "name": "entertainment"
+    },
+    {
+        "name": "budget"
+    },
+    {
+        "name": "ground-transportation"
+    },
+    {
+        "name": "other"
+    }
+]
