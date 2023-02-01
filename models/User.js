@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const bcrypt = require('bcrypt');
 
-class User extends Model {
+class User extends Model {1}
     // coming back when have more models
-}
+
 
 User.init (
     {

@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 require('dotenv').config();
 
 let sequelize;
+
 if (process.env.heroku_site_name) {        // need to change this when I figure out the heroku site
     sequelize = new Sequelize(process.env.heroku_site_name);     // this will change too
 } else {

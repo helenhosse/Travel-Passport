@@ -20,6 +20,9 @@ const sessionSettings = {
     secret: 'secret here',
     resave: false,
     saveUnitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
 };
 app.use(session(sessionSettings));
 
