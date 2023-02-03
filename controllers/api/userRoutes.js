@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../models/User');
+const User = require('../../models/User');
 const bcrypt = require('bcrypt');
 
 router.post('/login', async (req, res) => {
@@ -26,6 +26,16 @@ router.post('/login', async (req, res) => {
         });
     } catch(err) {
         res.status(500).json({message: "An error occurred, please try again. If problem persists, contact us."});
+    }
+});
+
+router.post('/logout', (req,res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
     }
 });
 
