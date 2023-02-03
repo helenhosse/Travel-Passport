@@ -9,4 +9,4 @@ const options = {
 fetch('https://timetable-lookup.p.rapidapi.com/codes/entertainment/', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
-	.catch(err => console.error(err));
+	.catch(err => console.error(err)); 

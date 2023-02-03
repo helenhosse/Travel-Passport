@@ -7,7 +7,7 @@ const session = require('express-session'); // confused on this part
 const hbs = exphbs.create({}); // for handlebars but still don't get this, know I have to add more
 
 const sequelize = require('./config/connection'); // importing the database connections
-const { appendFile } = require('fs');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 app.engine('handlebars', hbs.engine);
@@ -27,11 +27,15 @@ const sessionSettings = {
 app.use(session(sessionSettings));
 
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(routes);
+
 app.use(express.static(path.join(__dirname, 'public'))); 
 // using the middleware to serve the files like .css and images, absolute path to the public folder
 
 sequelize.sync({force:true}).then(() => {
-    app.listenPORT, (() => {
+    app.listen(PORT, () => {
         console.log(`App started in Port ${PORT}`);
     })
 }); 

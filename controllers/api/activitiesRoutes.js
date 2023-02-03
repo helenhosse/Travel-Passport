@@ -1,14 +1,14 @@
 const router = require('express').Router();
-const Category = require('../models/Category');
-const auth = require('../utils/auth');
+const Activity = require('../../models/Activities');
+const auth = require('../../utils/auth');
 
 router.get('/', auth, async (req, res) => {
     try {
-        const categoriesData = await Category.findAll();
-        const categories = categoriesData.map(
+        const activitiesData = await Activity.findAll();
+        const activities = ActivitiesData.map(
             (category) => category.get({ plain: true}));
-            res.status(200).json(categories);
-            res.render ('categories', {categories});
+            res.status(200).json(activities);
+            res.render ('categories', {activities});
     } catch (err) {
         res.status(500).json({message: "An error occurred, please try again. If the problem persists please contact us."});
     }
