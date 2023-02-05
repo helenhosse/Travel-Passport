@@ -6,7 +6,19 @@ const options = {
 	}
 };
 
-fetch('https://timetable-lookup.p.rapidapi.com/codes/entertainment/', options)
+fetch('https://timetable-lookup.p.rapidapi.com/TimeTable/BOS/LAX/20191217/?format=json', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err)); 
+
+
+fetch('https://timetable-lookup.p.rapidapi.com/airlines/%7Bairlineiatacode%7D/routes/?format=json', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err)); 
+
+fetch('https://timetable-lookup.p.rapidapi.com/airlines/?format=json', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err)); 
+
