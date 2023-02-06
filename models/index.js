@@ -3,20 +3,19 @@
 // will make table essentially here with the models
 
 const User = require('./User');
-const Category = require('./Category');
-const Bookings = require('./Bookings');
+const Travel = require('./Travel');
 
 // will make table essentially here with the models
 
 
-User.hasMany(Bookings, {
+User.hasMany(Travel, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE",'
 });
 
-Bookings.belongsTo(User, {
+Travel.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
 
-module.exports = {User, Bookings}; 
+module.exports = {User, Travel}; 

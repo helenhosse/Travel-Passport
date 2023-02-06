@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
-const session = require('express-session'); // confused on this part
+const session = require('express-session'); 
+const helpers = require('./utils/helpers');
 
 
 const sequelize = require('./config/connection'); // importing the database connections
@@ -13,10 +14,16 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 // process.env.port is a setting in Heroku. We don't know what pot is going to use Heroku, so we need to grab from the enviroment variables 
 // in Heroku
-const hbs = exphbs.create({}); // for handlebars but still don't get this, know I have to add more
+const hbs = exphbs.create({ helpers }); // for handlebars but still don't get this, know I have to add more
 
 const sessionSettings = {
     secret: 'secret here',
+    cookie: {
+        maxAge: 800,
+        httpOnly: true,
+        secure: false,
+        sameSite: 'strict',
+    },
     resave: false,
     saveUnitialized: true,
     store: new SequelizeStore({
