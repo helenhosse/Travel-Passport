@@ -1,10 +1,11 @@
-const{Model, Datatypes}= require('sequelize');
-const { Travel } = require('.');
+const{ Model, Datatypes }= require('sequelize');
+// const { Travel } = require('.');
 const sequelize = require('../config/connection');
+var DataTypes = require('sequelize/lib/data-types');
 
-class Travels extends Model {}
+class Travel extends Model {}
 
-Travels.init(
+Travel.init(
     {
         id: {
             type: DataTypes.INTEGER,

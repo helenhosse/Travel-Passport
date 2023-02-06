@@ -3,6 +3,7 @@ const { Travel } = require('../../models');
 const { json } = require('express');
 const fetch = require('node-fetch');
 const {parseString} = require('xml2js');
+const auth = require('../../utils/auth');
 
 const options = {
     method: 'GET',
@@ -13,7 +14,7 @@ const options = {
     }
 };
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', auth, async (req, res) => {
     try {
         const newTravel = await Travel.create({
             ...req.body,
@@ -26,7 +27,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         const travelData = await Travel.destroy({
             where: {

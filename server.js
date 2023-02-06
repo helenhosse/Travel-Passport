@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3001;
 // in Heroku
 const hbs = exphbs.create({ helpers }); // for handlebars but still don't get this, know I have to add more
 
-const sessionSettings = {
+const sess = {
     secret: 'secret here',
     cookie: {
         maxAge: 800,
@@ -25,12 +25,12 @@ const sessionSettings = {
         sameSite: 'strict',
     },
     resave: false,
-    saveUnitialized: true,
+    saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize
     })
 };
-app.use(session(sessionSettings));
+app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -43,10 +43,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({force:true}).then(() => {
-    app.listen(PORT, () => {
-        console.log(`App started in Port ${PORT}`);
+   app.listen(PORT, () => {
+      console.log(`App started in Port ${PORT}`);
     })
 }); 
+
+// sequelize.sync({ force: false }).then(() => {
+ //    app.listen(PORT, () => console.log('Now listening'));
+// });
 
 
 // sequelize sync will open the conenction to our database, and also will recreate the tables if force is set to true

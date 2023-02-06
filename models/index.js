@@ -18,4 +18,4 @@ Travel.belongsTo(User, {
 });
 
 
-module.exports = {User, Travel}; 
+module.exports = { User, Travel }; 
