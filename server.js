@@ -4,17 +4,16 @@ const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 const session = require('express-session'); // confused on this part
 
-const hbs = exphbs.create({}); // for handlebars but still don't get this, know I have to add more
 
 const sequelize = require('./config/connection'); // importing the database connections
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+
 const PORT = process.env.PORT || 3001;
 // process.env.port is a setting in Heroku. We don't know what pot is going to use Heroku, so we need to grab from the enviroment variables 
 // in Heroku
+const hbs = exphbs.create({}); // for handlebars but still don't get this, know I have to add more
 
 const sessionSettings = {
     secret: 'secret here',
@@ -26,13 +25,15 @@ const sessionSettings = {
 };
 app.use(session(sessionSettings));
 
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(routes);
-
 app.use(express.static(path.join(__dirname, 'public'))); 
+
 // using the middleware to serve the files like .css and images, absolute path to the public folder
+app.use(routes);
 
 sequelize.sync({force:true}).then(() => {
     app.listen(PORT, () => {
