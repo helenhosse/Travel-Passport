@@ -12,28 +12,30 @@
    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Thasadith:wght@400;700&display=swap"
       rel="stylesheet">
    <title>The Suite Life</title>
-    <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
+
 </head>
 
 
 <body>
-    {{{body}}}
+   <nav>
+      <!-- Conditionally render login or logout links -->
+      {{#if logged_in}}
+      <a href="/profile">profile</a> |
+      <button class="no-button" id="logout">logout</button>
+      {{else}}
+      <a href="/login">login</a>
+      {{/if}}
+   </nav>
 
-{{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+   {{{body}}}
+
+   {{#if logged_in}}
+   {{!-- <script src="/js/logout.js"></script> --}}
+   {{/if}}
 
 </body>
 
 
-<script src="assets/api.js"></script>
+{{!-- <script src="assets/api.js"></script> --}}
 
 </html>
