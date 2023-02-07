@@ -10,11 +10,11 @@ const Travel = require('./Travel');
 
 User.hasMany(Travel, {
     foreignKey: 'user_id',
-    onDelete: 'CASCADE",'
+    onDelete: 'CASCADE'
 });
 
 Travel.belongsTo(User, {
-    foreignKey: 'user_id',
+    foreignKey: 'user_id'
 });
 
 
