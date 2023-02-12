@@ -23,28 +23,27 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/travel', (req, res) => {
+router.get('/travel', async (req, res) => {
+    try {
+        const travelData = await Travel.findAll( {
+            include: [
+                {
+                model: User,
+                attributes: ['name'],
+            },
+            ],
+        });
 
-    res.send('travel route')
-    // try {
-    //     const travelData = await Travel.findByPk(req.params.id, {
-    //         include: [
-    //             {
-    //             model: User,
-    //             attributes: ['name'],
-    //         },
-    //         ],
-    //     });
-
-    //     const travel = travelData.get({ plain: true });
-
-    //     res.render('travel', {
-    //         ...travel,
-    //         logged_in: req.session.logged_in
-    //     });
-    // } catch (err) {
-    //     res.status(500).json(err);
-    // }
+    const travel = travelData.map((trip) =>
+        trip.get({ plain: true })
+      );
+        res.render('travel', {
+            travel,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 router.get('/homepage', withAuth, async (req, res) => {

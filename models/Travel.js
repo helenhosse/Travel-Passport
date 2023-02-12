@@ -1,5 +1,5 @@
 const{ Model, Datatypes }= require('sequelize');
-// const { Travel } = require('.');
+//const { Travel } = require('.');
 const sequelize = require('../config/connection');
 var DataTypes = require('sequelize/lib/data-types');
 
