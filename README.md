@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Travel-Passport
 # Group Project 2: The Suite Life
 
@@ -30,3 +31,4 @@ https://smallbusiness.chron.com/design-travel-website-database-47732.html
 
 
 ## License
+=======
